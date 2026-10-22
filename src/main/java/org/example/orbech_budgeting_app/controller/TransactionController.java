@@ -1,14 +1,17 @@
 package org.example.orbech_budgeting_app.controller;
 
+import jakarta.validation.Valid;
 import org.example.orbech_budgeting_app.model.Transaction;
 import org.example.orbech_budgeting_app.service.TransactionService;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
+@Validated
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -30,13 +33,13 @@ public class TransactionController {
     // POST - Create
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Transaction createTransaction(@RequestBody Transaction transaction) {
+    public Transaction createTransaction(@Valid @RequestBody Transaction transaction) {
         return transactionService.create(transaction);
     }
 
     // PUT - Update
     @PutMapping("/{id}")
-    public Transaction updateTransaction(@PathVariable Long id, @RequestBody Transaction transaction) {
+    public Transaction updateTransaction(@PathVariable Long id, @Valid @RequestBody Transaction transaction) {
         return transactionService.update(id, transaction);
     }
 

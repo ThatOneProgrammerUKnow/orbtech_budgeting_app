@@ -8,4 +8,15 @@ public class ErrorResponse {
     private String error;
     private String message;
 
+    public ErrorResponse(int status, String error, String message) {
+        this.timeStamp = LocalDateTime.now();
+        this.status = status;
+        this.error = error;
+        this.message = message;
+    }
+
+    public LocalDateTime getTimeStamp() { return this.timeStamp; }
+    public int getStatus() { return this.status; }
+    public String getError() { return this.error; }
+    public String getMessage() { return this.message; }
 }
