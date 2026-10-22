@@ -1,3 +1,14 @@
 spring:
   application:
     name: orbech_budgeting_app
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/orbtech_budgeting_app
+    username: postgres
+    password: ${DB_PASSWORD:default_local_password}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

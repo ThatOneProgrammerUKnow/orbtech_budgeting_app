@@ -1,11 +1,28 @@
 package org.example.orbech_budgeting_app.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+@Entity
 public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String name;
-    private double monthlyBudget;
+
+    @Positive
+    private Double monthlyBudget;
 
     // Constructor
+    protected Category(){
+    }
     public Category(Long id, String name, double monthlyBudget) {
         if (monthlyBudget < 0) {
             throw new IllegalArgumentException("Monthly Budget cannot be less than 0");
@@ -29,6 +46,7 @@ public class Category {
         if (monthlyBudget < 0) {
             throw new IllegalArgumentException("Monthly Budget cannot be less than 0");
         }
+        this.monthlyBudget = monthlyBudget;
     }
 
 }

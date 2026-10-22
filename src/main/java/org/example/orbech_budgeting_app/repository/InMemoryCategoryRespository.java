@@ -7,9 +7,9 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
-public class CategoryRepository {
+public class InMemoryCategoryRespository {
     private final Map<Long, Category> allCategories = new HashMap<>();
-    private final AtomicLong nextId = new AtomicLong(0);
+    private final AtomicLong nextId = new AtomicLong(1);
 
     // Create & Update (For JPA)
     public Category save(Category category) {
@@ -23,17 +23,13 @@ public class CategoryRepository {
     }
 
     // Read
-    public List findAll() {
+    public List<Category> findAll() {
         return new ArrayList<>(allCategories.values());
     }
     public Optional<Category> findById(long id) {
         return Optional.ofNullable(allCategories.get(id));
     }
 
-    // Update
-    public void updateCategory(long id, Category category) {
-        allCategories.replace(id, category);
-    }
 
     // Delete
     public void deleteById(long id) {
